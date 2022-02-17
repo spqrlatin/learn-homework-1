@@ -1,5 +1,4 @@
 """
-
 Домашнее задание №1
 
 Условный оператор: Сравнение строк
@@ -15,15 +14,29 @@
 
 """
 
-def main():
+def main(string_1, string_2):
     """
     Эта функция вызывается автоматически при запуске скрипта в консоли
     В ней надо заменить pass на ваш код
     """
-    string1 = str(input())
-    string2 = str(input())
 
-    if string1 and string2 == str:
-        pass
+    if type(string_1) != str and type(string_2) != str:
+        return 0
+
+    elif string_1 == string_2:
+        return 1
+
+    else:
+        if len(string_1) > len(string_2):
+            return 2
+
+        elif string_2 == 'learn':
+            return 3
+        else:
+            return "Вы ввели не то и не туда!"
+
+
 if __name__ == "__main__":
-    main()
+    string_1 = input()
+    string_2 = input()
+    print(main(string_1, string_2))
