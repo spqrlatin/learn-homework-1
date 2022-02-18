@@ -18,6 +18,13 @@
 
 
 def count_sold_avg(product_sold):
+    sold_sum = 0
+    for sold in product_sold:
+        sold_sum += sold
+    return sold_sum / len(product_sold)
+
+
+def count_sold_avg(product_sold):
     sold_sum_avg = 0
     for sold in product_sold:
         sold_sum_avg += sold
@@ -36,6 +43,7 @@ def main():
     Эта функция вызывается автоматически при запуске скрипта в консоли
     В ней надо заменить pass на ваш код
     """
+
     avg_sold_phones = 0
     for phones in sold_phones:
         sold = round(count_sold_avg(phones['items_sold']), 2)  # округленный результат

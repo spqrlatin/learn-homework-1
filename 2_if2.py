@@ -1,5 +1,4 @@
 """
-
 Домашнее задание №1
 
 Условный оператор: Сравнение строк
@@ -33,6 +32,9 @@ def main(string_1, string_2):
 
         elif string_2 == 'learn':
             return 3
+
+        else:
+            return "Вы ввели не то и не туда!"
 
 
 if __name__ == "__main__":
