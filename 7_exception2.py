@@ -13,17 +13,23 @@
 
 """
 
-def discounted(price, discount, max_discount=20, phone_name = ''):
+def discounted(price, discount, max_discount=20):
     """
     Замените pass на ваш код
     """
-    stock = [
-        {'name': 'iPhone', 'stock': 24, 'price': 69432.1,
-         'discount': 25},
-        {'name': 'Samsung Galaxy S21', 'stock': 8, 'price': 52000.0,
-         'discount': 10},
-        {'name': '', 'stock': 10, 'price': 10000.0, 'discount': 10}
-    ]
+    try:
+        price = float(price)
+    except ValueError or TypeError:
+        return "Не могу привести к float price"
+    try:
+        discount = float(discount)
+    except ValueError or TypeError:
+        return "Не могу привести к float discount"
+
+    try:
+        max_discount = int(max_discount)
+    except ValueError or TypeError:
+        return "Не могу привести к int max_discount"
 
     price = abs(price)
     discount = abs(discount)
@@ -31,8 +37,6 @@ def discounted(price, discount, max_discount=20, phone_name = ''):
     if max_discount > 100:
         raise ValueError('Слишком большая максимальная скидка')
     if discount > max_discount:
-        return price
-    elif 'iphone' in phone_name.lower() or not phone_name:
         return price
     else:
         return price - (price * discount / 100)

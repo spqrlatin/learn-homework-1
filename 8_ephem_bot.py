@@ -1,3 +1,4 @@
+import ephem
 """
 Домашнее задание №1
 
@@ -14,7 +15,7 @@
 """
 import logging
 
-from telegram.ext import Updater, CommandHandler, MessageHandler, Filters
+from telegram.ext import Updater, CommandHandler, MessageHandleep
 
 logging.basicConfig(format='%(name)s - %(levelname)s - %(message)s',
                     level=logging.INFO,
