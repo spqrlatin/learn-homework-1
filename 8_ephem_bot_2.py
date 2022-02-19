@@ -14,22 +14,20 @@
 """
 import logging, ephem
 
-from telegram.ext import Updater, CommandHandler, MessageHandler, Filters
-from get_planet import *
-
+from telegram.ext import Updater, CommandHandler, MessageHandler
 
 logging.basicConfig(format='%(name)s - %(levelname)s - %(message)s',
                     level=logging.INFO,
                     filename='bot.log')
 
 
-#PROXY = {
-#    'proxy_url': 'socks5://t1.learn.python.ru:1080',
-#    'urllib3_proxy_kwargs': {
-#        'username': 'learn',
-#        'password': 'python'
-#    }
-#}
+PROXY = {
+    'proxy_url': 'socks5://t1.learn.python.ru:1080',
+    'urllib3_proxy_kwargs': {
+        'username': 'learn',
+        'password': 'python'
+    }
+}
 
 
 def greet_user(update, context):
@@ -40,32 +38,16 @@ def greet_user(update, context):
 
 def talk_to_me(update, context):
     user_text = update.message.text
-    update.message.reply_text(user_text)
-
-
-def get_planet(update, context):
-    user_text: str = update.message.text
-    message_list = user_text.split(" ")
-    print(message_list)
-    if len(message_list) != 2:
-        update.message.reply_text(r"Функция вызвана неправильно, формата вызова /planet PlanetName")
-    else:
-        planet_name = message_list[1]
-        update.message.reply_text(f"Делаю поиск созвездия для планеты {planet_name}")
-        update.message.reply_text(get_consilation(planet_name))
-
-if __name__ == '__main__':
-    print(get_consilation("Mars"))
-
+    print(user_text)
+    update.message.reply_text(text)
 
 
 def main():
-    mybot = Updater("5210021964:AAGiN86zFcONGba-LM6C9Uwfumihks9MorQ", use_context=True)
+    mybot = Updater("5210021964:AAGiN86zFcONGba-LM6C9Uwfumihks9MorQ", request_kwargs=PROXY, use_context=True)
 
     dp = mybot.dispatcher
     dp.add_handler(CommandHandler("start", greet_user))
     dp.add_handler(MessageHandler(Filters.text, talk_to_me))
-    dp.add_handler(CommandHandler("planet", get_planet))
 
     mybot.start_polling()
     mybot.idle()
