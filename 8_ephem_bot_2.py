@@ -12,10 +12,11 @@
   бота отвечать, в каком созвездии сегодня находится планета.
 
 """
+import os
 import logging, ephem
-
+from dotenv import load_dotenv
 from telegram.ext import Updater, CommandHandler, MessageHandler
-
+load_dotenv()
 logging.basicConfig(format='%(name)s - %(levelname)s - %(message)s',
                     level=logging.INFO,
                     filename='bot.log')
@@ -43,7 +44,7 @@ def talk_to_me(update, context):
 
 
 def main():
-    mybot = Updater("5210021964:AAGiN86zFcONGba-LM6C9Uwfumihks9MorQ", request_kwargs=PROXY, use_context=True)
+    mybot = Updater(os.getenv("BOT_TOKEN"), request_kwargs=PROXY, use_context=True)
 
     dp = mybot.dispatcher
     dp.add_handler(CommandHandler("start", greet_user))

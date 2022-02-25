@@ -13,10 +13,11 @@
 
 """
 import logging, ephem
-
+from dotenv import load_dotenv
 from telegram.ext import Updater, CommandHandler, MessageHandler, Filters
 from get_planet import *
-
+import os
+load_dotenv()
 
 logging.basicConfig(format='%(name)s - %(levelname)s - %(message)s',
                     level=logging.INFO,
@@ -60,7 +61,7 @@ if __name__ == '__main__':
 
 
 def main():
-    mybot = Updater("5210021964:AAGiN86zFcONGba-LM6C9Uwfumihks9MorQ", use_context=True)
+    mybot = Updater(os.getenv("BOT_TOKEN"), use_context=True)
 
     dp = mybot.dispatcher
     dp.add_handler(CommandHandler("start", greet_user))
